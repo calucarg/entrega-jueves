@@ -1,0 +1,91 @@
+﻿Ejercicio 2.
+
+
+a.
+fin: 0x14
+resta: 0x18
+prologo: 0x18
+sigo: 0x28
+epilogo: 0x2c
+
+
+b.
+jal ra, resta -> salta a prologo
+beq a0,zero,epilogo = FALSE -> sigo 
+sigo: salta a resta, luego beq a0,zero,epilogo = TRUE -> salto a epilogo
+ret = jalr zero ra 0 -> salta a ra = 14 o sea fin
+
+
+c.
+li funciona como un addi en el rango:
+-2048 a 2047 o en binario: 0b100000000000 a 0b0111111111111 (2 a la 11 y el signo)
+pasando esos rangos, actúa como lui y luego addi, tal que:
+-2147483648 a 2147483647 o en bin:
+0b10000000000000000000000000000000 a
+0b01111111111111111111111111111111 (2 a la 31 y signo)
+Coincide con el imm de ADDI sii está dentro del primer rango
+
+
+d.
+Usando lui para los 20 bits mas significativos y luego addi para los 12 bits restantes
+
+
+e.
+a1=2114
+
+
+f.
+Al final, PC=0x14
+
+
+g.
+0->4->8->c->10->(jump resta) 18 ->1c->20->24->28 -> (jump resta) 18 ->1c -> 20 -> 24 -> (jump epilogo) 2c -> 30 -> 34 -> (jump epilogo) 2c -> 30 ->34 -> (jump fin) 14 (infinito jump 14)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+h.
+Inicio: 
+ra = 0
+sp = 0x7ffffff0 (llena)
+Ejecución:
+PC=0x10:
+ra = 0x14
+PC=0x18:
+        sp = 0x7ffffff0 - 4 = 0x7fffffec
+PC=0x28:
+        ra = 0x2c
+Vuelve a PC=0x18:
+        sp = 0x7fffffec -4 = 0x7ffffe8
+PC=2c:
+        ra=0x14
+PC= 0x30:
+        sp = 0x7ffffe8 +4 = 0x7ffffec
+PC= 0x30 (de nuevo):
+        sp = 0x7ffffec +4 = 0x7fffff0 (restaurada)
+
+
+
+
+
+
+i.
+antes (li a0,2114) era lui y addi, ahora srai a1, a0, 1 divide entre 2 en una única instrucción
