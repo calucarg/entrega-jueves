@@ -227,3 +227,46 @@ Modulo fulbot {
         return t.equipos.obtener(e) //O(log n)
     }
 }
+
+
+
+//81
+
+f ∈ O(h) ∩ Ω(g) → h ∈ Ω(f) ∧ g ∈ Ω(f)
+
+f ∈ O(h) ≡ O(h) = {f | ∃n₀,c₁>0 / n ≥ n₀ → f ≤ c₁*h}
+f ∈ Ω(g) ≡ Ω(g) = {f | ∃n₁,c₂>0 / n ≥ n₁ → c₂*g ≤ f}
+Tomando n₀=n₁=n₂=n₃  
+⇒ f ∈ O(h) ∩ Ω(g) ≡ O(h) ∩ Ω(g) = {f | ∃n₀,c₁,c₂>0 / n ≥ n₀ → c₂*g ≤ f ≤ c₁*h}
+
+y tenemos que ver que eso implica:
+h ∈ Ω(f) ≡ Ω(f) = {h | ∃n₀,c₃>0 / n ≥ n₀ → c₃*f ≤ h}, sabiendo eso tenemos que: f ≤ c₁*h ent:
+Ω(f) = {h | ∃n₀,c₃>0 / n ≥ n₀ → c₃*f ≤ h ≤ c₁*h} lo cual es cierto para algún c₁≥1, tomando c₃=1:
+
+g ∈ Ω(f) ≡ Ω(f) = {g | ∃n₃,c₄>0 / n ≥ n₀ → c₄*f ≤ g}
+
+sabemos que c₂*g ≤ f, ent 
+g ∈ Ω(f) ≡ Ω(f) = {g | ∃n₃,c₄>0 / n ≥ n₀ → c₂*g ≤ f ≤ c₄*f ≤ g}
+notamos que para por ej c₂≤1 y c₄=1 esto es cierto! y tenemos que f=g
+
+g ∈ Ω(f) ≡ Ω(f) = {g | ∃n₃,c₄>0 / n ≥ n₀ → f = g}
+
+f ∈ O(h) ∩ Ω(g) → h ∈ Ω(f) ∧ g ∈ Ω(f) v
+
+∀n∈N, f < g → O(f) ∩ Ω(g) = ∅
+Sabemos que f < g,
+Vemos que implica en O(f) ∩ Ω(g):
+∃n₀,c₀,c₁>0 / n≥n₀ → 
+llamo al conj que existe en la intersección entre  O(f) ∩ Ω(g) como h
+h ≤ c₀*f < g < c₁*g ≤ h queremos que vale h
+
+h ≤ c₀*f < g < h supongamos el mejor caso posible:
+h = c₀*f
+h < g < h y esto quiere decir que h < h ≡ ∅ V
+
+
+
+
+
+
+
